@@ -1,0 +1,477 @@
+/* Google Font Link */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 78px;
+  background: #11101D;
+  padding: 6px 14px;
+  z-index: 99;
+  transition: all 0.5s ease;
+  /* Dodajemy shadow */
+  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.sidebar.open {
+  width: 275px;
+}
+
+.sidebar .logo-details {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.sidebar .logo-details .icon {
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+
+.sidebar .logo-details .logo_name {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+
+.sidebar.open .logo-details .icon,
+.sidebar.open .logo-details .logo_name {
+  opacity: 1;
+}
+
+.sidebar .logo-details #btn {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  font-size: 22px;
+  transition: all 0.4s ease;
+  font-size: 23px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+.sidebar.open .logo-details #btn {
+  text-align: right;
+}
+
+.sidebar i {
+  color: #fff;
+  height: 60px;
+  min-width: 50px;
+  font-size: 28px;
+  text-align: center;
+  line-height: 60px;
+}
+
+.sidebar .nav-list {
+  margin-top: 20px;
+  height: 100%;
+}
+
+.sidebar li {
+  position: relative;
+  margin: 8px 0;
+  list-style: none;
+}
+
+.sidebar li .tooltip {
+  position: absolute;
+  top: -20px;
+  left: calc(100% + 15px);
+  z-index: 3;
+  background: #fff;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 400;
+  opacity: 0;
+  white-space: nowrap;
+  pointer-events: none;
+  transition: 0s;
+}
+
+.sidebar li:hover .tooltip {
+  opacity: 1;
+  pointer-events: auto;
+  transition: all 0.4s ease;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.sidebar.open li .tooltip {
+  display: none;
+}
+
+.sidebar input {
+  font-size: 15px;
+  color: #fff;
+  font-weight: 400;
+  outline: none;
+  height: 50px;
+  width: 100%;
+  width: 50px;
+  border: none;
+  border-radius: 12px;
+  transition: all 0.5s ease;
+  background: #1d1b31;
+}
+
+.sidebar.open input {
+  padding: 0 20px 0 50px;
+  width: 100%;
+}
+
+.sidebar .bx-search {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  font-size: 22px;
+  background: #1d1b31;
+  color: #fff;
+}
+
+.sidebar.open .bx-search:hover {
+  background: #1d1b31;
+  color: #fff;
+}
+
+.sidebar .bx-search:hover {
+  background: #fff;
+  color: #11101d;
+}
+
+.sidebar li a {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  border-radius: 12px;
+  align-items: center;
+  text-decoration: none;
+  transition: all 0.4s ease;
+  background: #11101D;
+}
+
+.sidebar li a:hover {
+  background: #FFF;
+}
+
+.sidebar li a .links_name {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 400;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.4s;
+}
+
+.sidebar.open li a .links_name {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.sidebar li a:hover .links_name,
+.sidebar li a:hover i {
+  transition: all 0.5s ease;
+  color: #11101d;
+}
+.sidebar .nav-item.welcome-profile {
+  position: absolute;
+  bottom: 0;
+  width: 70%;
+  border-top: 1px solid #fff;
+  padding: 5px 0;
+}
+
+.sidebar .nav-item.welcome-profile .welcome {
+  font-size: 16px;
+  font-weight: bold;
+  color: gold;
+  margin-bottom: 5px;
+}
+
+.sidebar .nav-item.welcome-profile .name {
+  color: gold;
+}
+
+.sidebar .nav-item.welcome-profile .nav-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #fff;
+  font-size: 16px;
+  padding: 12px;
+  border-radius: 12px;
+  transition: all 0.4s ease;
+}
+
+.sidebar .nav-item.welcome-profile .nav-link:hover {
+  background: #FFF;
+  color: #11101d;
+}
+
+.sidebar .nav-item.welcome-profile .nav-link i {
+  font-size: 20px;
+  margin-right: 10px;
+  color: gold;
+}
+.sidebar li a i {
+  min-width: 50px;
+  text-align: center;
+  margin-right: 4px;
+  color: #fff;
+}
+
+.sidebar.open .sidebar-text {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.sidebar .profile-details {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.sidebar .profile-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar .profile-content img {
+  height: 40px;
+  width: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.sidebar .profile-content .name-job {
+  color: #fff;
+}
+
+.home-content {
+  position: relative;
+  min-height: 100vh;
+  background-color: #f3f4f6;
+  transition: all 0.5s ease;
+}
+
+.home-content .profile-content {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 0 20px;
+  justify-content: space-between;
+}
+
+.home-content .profile-content img {
+  height: 40px;
+  width: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.home-content .profile-content .name-job {
+  color: #000;
+}
+
+.home-content .text {
+  font-size: 3.5rem;
+  font-weight: 600;
+}
+
+.home-content .text span {
+  color: #1db0dc;
+}
+
+.home-content .text-2 {
+  font-size: 1.5rem;
+  color: #666;
+  margin-bottom: 40px;
+}
+
+.home-content .scroll-down {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  text-align: center;
+}
+
+.home-content .scroll-down .scroll-btn {
+  color: #1db0dc;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10%;
+  margin:0 10%;
+  
+}
+
+.container__child {
+  flex: 1 1 45%;
+  max-width: 50%;
+  justify-content: center;
+  margin-top:40vh;
+}
+
+.section-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  background-image: linear-gradient(to right, rgb(255, 238, 0), rgb(212, 14, 14));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-align: center;
+}
+
+.box {
+  background-color: #212529;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  min-height: 180px;
+}
+
+.list-group {
+  list-style: none;
+  padding: 0;
+}
+
+.list-group-item {
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.list-group-item i {
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+}
+.navLink--bottom {
+  bottom: 0px!important;
+  /* margin-bottom: 0px!important; */
+}
+@media (max-width: 768px) {
+  .container__child {
+    flex: 1 1 100%;
+    margin-top:20px
+  }
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3%;
+    margin:0 5%;
+}
+
+.card-body h2.card-title {
+  font-size: 28px;
+  font-weight: bold;
+  color: red; /* Zmieniony na czerwony kolor tekstu */
+  background-image: linear-gradient(to right, #414033, rgb(190, 26, 26));
+  margin-bottom: 20px;
+}
+
+.card-body .list-group-item {
+  font-size: 16px;
+  font-weight: 400;
+  color: #fff;
+}
+
+.card-body .list-group-item i {
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+}
+
+.card-body .list-group-item.bg-dark {
+  background-color: #212529;
+}
+
+.card-body .list-group-item.bg-dark.text-white.border-secondary {
+  border-color: #868e96;
+}
+.profile {
+  display: flex;
+  flex-direction: column; /* Ustawienie kierunku flexbox na pionowy */
+  align-items: flex-start; /* Wyrównanie elementów do lewej strony */
+  justify-content: flex-end; /* Wyśrodkowanie elementów do dolnej krawędzi kontenera */
+  height: 50%; /* Ustawienie wysokości na 100% kontenera */
+}
+
+.profile .welcome {
+  font-size: 18px;
+  font-weight: bold;
+  color: gold; /* Kolor imienia */
+}
+
+.profile .name {
+  color: gold; /* Kolor imienia */
+}
+
+.profile .logout {
+  font-size: 16px;
+}
+
+.profile .logout i {
+  font-size: 24px;
+  margin-left: 5px;
+  color: gold; /* Kolor ikony wylogowania */
+}
+
+.navbar-nav.ml-auto {
+  /* Dodanie stylów do przeniesienia tekstu "Welcome Seksocholik" i przycisku wylogowania na sam dół menu */
+  display: flex;
+  flex-direction: column; /* Ustawienie kierunku flexbox na pionowy */
+}
+
+.navbar-nav.ml-auto .welcome-profile {
+  margin-top: auto; /* Wykorzystanie automatycznego marginesu, aby przenieść element na dół */
+}
+
+.navbar-nav.ml-auto .welcome-profile .nav-link {
+  display: flex;
+  align-items: center; /* Wyrownanie elementow w srodku */
+}
+
+.navbar-nav.ml-auto .welcome-profile .nav-link i {
+  margin-right: 5px; /* Dodanie marginesu do ikony */
+}
+
+.navbar-nav.ml-auto .welcome-profile {
+  margin-top: auto; /* Wykorzystanie automatycznego marginesu, aby przenieść element na dół */
+}
+}

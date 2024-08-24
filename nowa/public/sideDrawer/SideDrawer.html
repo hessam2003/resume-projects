@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Responsive Sidebar Menu HTML CSS | CodingNepal</title>
+  <link rel="stylesheet" href="./style.css" />
+  <!-- Boxicons CDN Link -->
+  <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
+  <!-- Font Awesome CDN Link -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+  <div class="sidebar">
+    <div class="logo-details" id="logoDetails">
+      <div class="logo_name">RSS EMPIRE SHOP</div>
+      <i class="bx bx-menu" id="btn"></i>
+    </div>
+    <ul class="nav-list">
+      <li>
+        <a href="/">
+          <i class="bx bx-home"></i>
+          <span class="links_name">Home</span>
+        </a>
+        <span class="tooltip">Home</span>
+      </li>
+      <li>
+        <a href="#" >
+          <i class="bx bx-help-circle"></i>
+          <span class="links_name">FAQ</span>
+        </a>
+        <span class="tooltip">FAQ</span>
+      </li>
+      <li>
+        <a href="https://discord.gg/pb7yEUFNDx">
+          <i class="bx bx-phone"></i>
+          <span class="links_name">Discord</span>
+        </a>
+        <span class="tooltip">Discord</span>
+      </li>
+      <li>
+        <a href="#">
+          <i class="bx bx-building-house"></i>
+          <span class="links_name">Choose Kingdom</span>
+        </a>
+        <span class="tooltip">Choose Kingdom</span>
+      </li>
+      <li>
+        <a href="#">
+          <i class="bx bx-star"></i>
+          <span class="links_name">Reviews</span>
+        </a>
+        <span class="tooltip">Reviews</span>
+      </li>
+      <li>
+        <a href="/Cart">
+          <i class="bx bx-cart"></i>
+          <span class="links_name">Cart</span>
+        </a>
+        <span class="tooltip">Cart</span>
+      </li>
+      <li>
+        <a href="/myPurchases">
+          <i class="bx bx-shopping-bag"></i>
+          <span class="links_name">My Purchases</span>
+        </a>
+        <span class="tooltip">My Purchases</span>
+      </li>
+      <!-- <span class="welcome">Welcome <span class="name">Seksocholikk</span></span> -->
+      <li class="nav-item welcome-profile navLink--bottom" >
+        <a href="#">
+          <i class="bx bx-log-out" id="log_out"></i>
+          <span class="links_name">Logout</span>
+        </a>
+        <span class="tooltip">Logout</span>
+      </li>
+       
+      
+    </ul>
+  </div>
+
+  <!-- Added row with cards -->
+  <div class="container">
+    <div class="container__child">
+      <h2 class="section-title">Why Choose Us?</h2>
+      <div class="box">
+        <ul class="list-group">
+          <li class="list-group-item"><i class="fas fa-check"></i> We utilize unique and special methods to supply
+            resources.</li>
+          <li class="list-group-item"><i class="fas fa-trophy"></i> We are providing safe, reliable, and risk-free
+            services.</li>
+          <li class="list-group-item"><i class="fas fa-bag-shopping"></i> We prioritize customer satisfaction above all
+            else.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container__child">
+      <h2 class="section-title">How to Buy</h2>
+      <div class="box">
+        <ol class="list-group">
+          <li class="list-group-item"><i class="fas fa-hand-pointer"></i> Go to the Resource section and choose the
+            resource that fits your needs.</li>
+          <li class="list-group-item"><i class="fas fa-credit-card"></i> Follow the easy checkout process to complete
+            your purchase securely by using Stripe.</li>
+          <li class="list-group-item"><i class="fas fa-envelope"></i> Follow sellers marks and enjoy resources!</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- End of added row with cards -->
+
+  <script src="./script.js"></script>
+</body>
+
+</html>
