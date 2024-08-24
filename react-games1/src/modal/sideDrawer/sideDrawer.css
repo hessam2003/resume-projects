@@ -1,0 +1,24 @@
+.drawer {
+    padding: 5px;
+    position:fixed;
+    z-index:4000;
+    width:30%;
+    background-color: white;
+    border-radius: 10px;
+    border: 2px solid black ;
+    box-shadow: 1px 3px 10px rgb(88, 77, 77);
+    top:30%;
+    left:35%;
+
+}
+.deactive{
+      opacity:0;
+   transform:  translate(-100vw);
+   transition: all 500ms ease-out;
+}
+.active{
+  
+    opacity:1;
+    transform:translate(0vw);
+    transition: all 500ms ease-out;
+}

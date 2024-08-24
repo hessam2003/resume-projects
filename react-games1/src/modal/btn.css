@@ -1,0 +1,13 @@
+.btn{
+    background-color:rgb(160, 145, 145);
+    width:auto;
+    margin:0px 5px;
+    
+    transition: all 500ms ease-out;
+}
+.btn:hover{
+background-color: goldenrod
+}
+.danger:hover{
+    background-color:red 
+}
