@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>check box</title>
+
+</head>
+
+<body>
+
+    <div class="container">
+        <h1 class="text--main">how do you want your project to be?</h1>
+        <div class="checkbox__parent">
+            <div class="input__wrapper">
+
+                <label class="label--disabled" id="goodBtn">
+                    <input class="checkbox" type="checkbox">
+                    <svg width="60px" height="30px">
+                        <circle cx="15" cy="15" r="13" class="innertext__circle--disabled" id="goodCircle"></circle>
+                    </svg>
+                </label>
+                <p id="goodLable">good</p>
+            </div>
+            <div class="input__wrapper">
+                <input class="checkbox" type="checkbox">
+                <label class="label--enabled">
+                    <svg>
+                        <circle cx="15" cy="15" r="13" class="innertext__circle--enabled"></circle>
+                    </svg>
+                </label>
+                <p>cheap</p>
+            </div>
+            <div class="input__wrapper">
+                <input class="checkbox" type="checkbox">
+                <label class="label--disabled">
+                    <svg>
+                        <circle cx="15" cy="15" r="13" class="innertext__circle--disabled"></circle>
+                    </svg>
+                </label>
+                <p>fast</p>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+<script src="script.js"></script>
+
+</html>
