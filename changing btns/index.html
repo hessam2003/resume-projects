@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>slideshow</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="slideshow__parent">
+        <div class="slideshow">
+            <svg class="circle__parent">
+
+                <circle class="circle" cx="15" cy="15" r="14" fill="white" stroke="gray" stroke-width="3px" />
+                <text class="circle__inner-text" x="15" y="15" text-anchor="middle" dy=".3em" fill="gray">1</text>
+
+            </svg>
+
+            <hr class="horizontal-line">
+
+            <svg class="circle__parent">
+
+                <circle class="circle" cx="15" cy="15" r="14" fill="white" stroke="gray" stroke-width="3px" />
+                <text class="circle__inner-text" x="15" y="15" text-anchor="middle" dy=".3em" fill="gray">2</text>
+
+            </svg>
+
+            <hr class="horizontal-line">
+
+            <svg class="circle__parent">
+
+                <circle class="circle" cx="15" cy="15" r="14" fill="white" stroke="gray" stroke-width="3px" />
+                <text class="circle__inner-text" x="15" y="15" text-anchor="middle" dy=".3em" fill="gray">3</text>
+
+            </svg>
+
+            <hr class="horizontal-line">
+
+            <svg class="circle__parent">
+
+                <circle class="circle" cx="15" cy="15" r="14" fill="white" stroke="gray" stroke-width="3px" />
+                <text class="circle__inner-text" x="15" y="15" text-anchor="middle" dy=".3em" fill="gray">4</text>
+
+            </svg>
+            
+        </div>
+
+        <div class="btn__wrapper">
+
+            <button id="nextBtn" class="btn--active">next</button>
+            <button id="prevBtn" class="btn--disabled">prev</button>
+
+        </div>
+
+    </div>
+
+</body>
+
+<script src="script.js"></script>
+
+</html>

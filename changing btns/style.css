@@ -1,0 +1,89 @@
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+.circle__parent {
+    height: 30px;
+    width: 30px;
+    margin: auto 0px;
+    padding: 0px;
+}
+
+.slideshow__parent {
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.circle {
+    transition-duration: 700ms;
+}
+
+.slideshow {
+    width: 800px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin: auto;
+    margin-top: 300px;
+
+}
+
+.horizontal-line {
+    height: 90px;
+    rotate: 90deg;
+    margin: 0px 45px;
+    border: 3px solid gray;
+    transition-property: border;
+    transition-duration: 400ms;
+
+}
+
+.btn__wrapper {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    text-align: right;
+    margin: auto;
+    gap: 20px;
+}
+
+.btn--active {
+    width: 90px;
+    height: 30px;
+    color: white;
+    background-color: blueviolet;
+    border: 1px none red;
+    border-radius: 3px;
+}
+
+.btn--active:hover {
+    color: blueviolet;
+    background-color: rgb(172, 172, 169);
+    font-weight: 600;
+}
+
+.hr--active {
+    height: 90px;
+    rotate: 90deg;
+    margin: 0px 45px;
+    border: 3px solid blue;
+    transition-property: border;
+    transition-duration: 400ms;
+
+}
+
+.circle__inner-text {
+    transition-duration: 1000ms;
+    font-weight: 700;
+}
+
+.btn--disabled {
+    width: 90px;
+    height: 30px;
+    color: white;
+    border: 1px none red;
+    background-color: rgb(198, 198, 195);
+}
