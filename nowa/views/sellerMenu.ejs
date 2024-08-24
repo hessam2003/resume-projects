@@ -1,0 +1,270 @@
+<%- include('partials/MasterHeader') %>
+
+</div>
+<div class="col-md-10">
+  <h2>Orders</h2>
+
+  <!-- Button for filtering orders (initially hidden) -->
+  <button id="filterOrdersBtn" class="btn btn-primary mb-3" style="display: none;">Show My Orders</button>
+  <% if (orders.length > 0) { %>
+    <div class="table-responsive">
+      <table class="table table-dark table-bordered">
+        <!-- Table header -->
+        <thead>
+          <tr>
+            <th>Purchase Date</th>
+            <th>Status</th>
+            <th>Username</th>
+            <th>Discord</th>
+            <th>Coordinates</th>
+            <th>Item</th>
+            <th>Amount</th>
+            <th>Kingdom</th>
+            <th>Seller</th>
+            <th>Seller Profit</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Orders rendering -->
+          <% orders.forEach((order, index) => { %>
+            <tr>
+              <td><%= order.formattedDate %></td>
+              <td><%= order.order_status %></td>
+              <td><%= order.username %></td>
+              <td><%= order.discord %></td>
+              <td><%= order.coords %></td>
+              <td>
+                <% let isFirstName = true; %>
+                <% accountsDetails.forEach((detail) => { %>
+                  <% if (detail.order_id === order.id) { %>
+                    <% if (!isFirstName) { %>
+                      <br>
+                    <% } else { %>
+                      <% isFirstName = false; %>
+                    <% } %>
+                    <%= detail.name %>
+                  <% } %>
+                <% }); %>
+              </td>
+     
+              <td>
+                <% let isFirstAmount = true; %>
+                <% accountsDetails.forEach((detail) => { %>
+                  <% if (detail.order_id === order.id) { %>
+                    <% if (!isFirstAmount) { %>
+                      <br> <!-- Add a line break if it's not the first amount -->
+                    <% } else { %>
+                      <% isFirstAmount = false; %>
+                    <% } %>
+                    <!-- Multiply amount by 100 and append 'M' -->
+                    <%= detail.amount * 100 %>M
+                  <% } %>
+                <% }); %>
+              </td>
+              <td>
+                <% let isFirstKingdom = true; %>
+                <% accountsDetails.forEach((detail) => { %>
+                  <% if (detail.order_id === order.id) { %>
+                    <% if (!isFirstKingdom) { %>
+                      <br> <!-- Add a line break if it's not the first kingdom -->
+                    <% } else { %>
+                      <% isFirstKingdom = false; %>
+                    <% } %>
+                    <%= detail.kingdom %> <!-- Display kingdom -->
+                  <% } %>
+                <% }); %>
+              </td>
+              <td><%= order.seller || "Unclaimed" %></td> <!-- If no seller, display "Unclaimed" -->
+              <td><%= (order.price * 0.9).toFixed(2) %>€</td>
+              <td>
+                <% if (!order.seller) { %>
+                  <button class="btn btn-primary claim-btn" data-order-id="<%= order.id %>">Claim Order</button> <!-- Add claim button -->
+                <% } else if (order.seller === user.username) { %>
+                  <% if (order.order_status === "Complete") { %>
+                    Order Completed
+                    <br>
+                    <button class="btn btn-danger cancel-completion-btn" data-order-id="<%= order.id %>">Cancel Completion</button> <!-- Add cancel completion button -->
+                  <% } else { %>
+                    <button class="btn btn-danger cancel-btn" data-order-id="<%= order.id %>">Cancel Order</button> <!-- Add cancel button -->
+                    <button class="btn btn-success complete-btn" data-order-id="<%= order.id %>">Complete Order</button> <!-- Add complete button -->
+                  <% } %>
+                <% } %>
+              </td>   
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+      
+    </div>
+    
+    <!-- Pagination -->
+    <nav aria-label="Page navigation">
+      <ul class="pagination justify-content-center">
+        <% for (let i = 1; i <= totalPages; i++) { %>
+          <li class="page-item <%= currentPage === i ? 'active' : '' %>">
+            <a class="page-link" href="/sellerMenu?page=<%= i %>"><%= i %></a>
+          </li>
+        <% } %>
+      </ul>
+    </nav>
+  <% } else { %>
+    <!-- No orders message -->
+    <div class="alert alert-info">
+      There haven't been made any purchases on the site yet.
+    </div>
+  <% } %>
+</div>
+
+<%- include('partials/MasterFooter') %>
+
+<!-- JavaScript for handling filtering and claiming orders -->
+<script nonce="<%= nonce %>">
+    document.addEventListener('DOMContentLoaded', function () {
+      const filterOrdersBtn = document.getElementById('filterOrdersBtn');
+      let showingAllOrders = true; // Track whether all orders are currently shown
+  
+      // Show the filter button
+      filterOrdersBtn.style.display = 'block';
+  
+      // Function to update button text based on current state
+      function updateButtonText() {
+        if (showingAllOrders) {
+          filterOrdersBtn.textContent = 'Show My Orders'; // Change button text to show user's orders
+        } else {
+          filterOrdersBtn.textContent = 'Show All Orders'; // Change button text to show all orders
+        }
+      }
+  
+      // Add event listener to the filter button
+      filterOrdersBtn.addEventListener('click', function () {
+        // Get all rows in the table
+        const rows = document.querySelectorAll('.table tbody tr');
+  
+        // Toggle between showing all orders and showing only the current user's orders
+        if (showingAllOrders) {
+          // Loop through each row and hide rows not belonging to the current user
+          rows.forEach(row => {
+            const sellerCell = row.querySelector('td:nth-child(8)'); // Get the cell with seller's name
+            const sellerName = sellerCell.textContent.trim(); // Get the seller's name
+  
+            // Hide rows not belonging to the current user
+            if (sellerName !== "<%= user.username %>") {
+              row.style.display = 'none'; // Hide the row
+            }
+          });
+          showingAllOrders = false; // Update state to indicate only current user's orders are shown
+        } else {
+          // Loop through each row and show all rows
+          rows.forEach(row => {
+            row.style.display = ''; // Show the row
+          });
+          showingAllOrders = true; // Update state to indicate all orders are shown
+        }
+  
+        // Update button text
+        updateButtonText();
+      });
+  
+      // Initially set button text
+      updateButtonText();
+  
+      // Add event listener for claiming orders
+      const table = document.querySelector('.table');
+  
+      // Add event listener for the entire table, using event delegation
+      table.addEventListener('click', function(event) {
+        const target = event.target;
+        // Check if the clicked element is a claim, cancel, or complete button
+        if (target.classList.contains('claim-btn')) {
+          const orderId = target.dataset.orderId;
+          // Perform action to claim order with orderId
+          $.ajax({
+            url: `sellerMenu/claimOrder/${orderId}`,
+            type: 'POST',
+            success: function(response) {
+              // Order claimed successfully, update UI accordingly
+              console.log('Order claimed successfully');
+              // Update the "Seller" column and change button text upon successful claim
+              const row = target.closest('tr');
+              const sellerCell = row.querySelector('td:nth-child(8)');
+              const actionCell = row.querySelector('td:last-child');
+              sellerCell.textContent = "<%= user.username %>"; // Update seller name
+              actionCell.innerHTML = `<button class="btn btn-danger cancel-btn" data-order-id="${orderId}">Cancel Order</button> <button class="btn btn-success complete-btn" data-order-id="${orderId}">Complete Order</button>`; // Add Cancel and Complete Order buttons
+            },
+            error: function(xhr, status, error) {
+              // Handle errors if any
+              console.error('Failed to claim order:', error);
+            }
+          });
+        } else if (target.classList.contains('cancel-btn')) {
+          const orderId = target.dataset.orderId;
+          // Perform action to cancel order with orderId
+          $.ajax({
+            url: `sellerMenu/cancelOrder/${orderId}`,
+            type: 'POST',
+            success: function(response) {
+              // Order cancelled successfully, update UI accordingly
+              console.log('Order cancelled successfully');
+              // Update the "Seller" column and change button text upon successful cancellation
+              const row = target.closest('tr');
+              const sellerCell = row.querySelector('td:nth-child(8)');
+              const actionCell = row.querySelector('td:last-child');
+              sellerCell.textContent = "Unclaimed"; // Reset seller name
+              actionCell.innerHTML = '<button class="btn btn-primary claim-btn" data-order-id="' + orderId + '">Claim Order</button>'; // Change button text
+            },
+            error: function(xhr, status, error) {
+              // Handle errors if any
+              console.error('Failed to cancel order:', error);
+            }
+          });
+        } else if (target.classList.contains('complete-btn')) {
+          const orderId = target.dataset.orderId;
+          // Perform action to complete order with orderId
+          $.ajax({
+            url: `sellerMenu/completeOrder/${orderId}`,
+            type: 'POST',
+            success: function(response) {
+              // Order completed successfully, update UI accordingly
+              console.log('Order completed successfully');
+              // Update the "Seller" column and change button text upon successful completion
+              const row = target.closest('tr');
+              const statusCell = row.querySelector('td:nth-child(2)');
+              const actionCell = row.querySelector('td:last-child');
+              statusCell.textContent = 'Complete'; // Update status
+              actionCell.innerHTML = 'Order Completed'; // Replace buttons with message
+              actionCell.innerHTML = 'Order Completed <br> <button class="btn btn-danger cancel-completion-btn" data-order-id="' + orderId + '">Cancel Completion</button>'; // Change button text
+            },
+            error: function(xhr, status, error) {
+              // Handle errors if any
+              console.error('Failed to complete order:', error);
+            }
+          });
+        } else if (target.classList.contains('cancel-completion-btn')) {
+          const orderId = target.dataset.orderId;
+          // Perform action to cancel order completion with orderId
+          $.ajax({
+            url: `sellerMenu/cancelOrderCompletion/${orderId}`,
+            type: 'POST',
+            success: function(response) {
+              // Order completion cancellation successful, update UI accordingly
+              console.log('Order completion cancelled successfully');
+              // Update the "Status" column and change button text upon successful cancellation
+              const row = target.closest('tr');
+              const statusCell = row.querySelector('td:nth-child(2)');
+              const actionCell = row.querySelector('td:last-child');
+              statusCell.textContent = 'pending'; // Update status to Active assuming Active represents an ongoing order
+              actionCell.innerHTML = '<button class="btn btn-danger cancel-btn" data-order-id="' + orderId + '">Cancel Order</button>'; // Change button text back to Complete Order
+              actionCell.innerHTML += '<button class="btn btn-success complete-btn" data-order-id="' + orderId + '">Complete Order</button>'; // Change button text back to Complete Order
+            },
+            error: function(xhr, status, error) {
+              // Handle errors if any
+              console.error('Failed to cancel order completion:', error);
+            }
+          });
+        }
+      });
+    });
+  </script>
+  
+  

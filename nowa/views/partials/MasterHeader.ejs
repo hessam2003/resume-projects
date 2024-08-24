@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/images/Logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <link rel="stylesheet" href="/styles.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+</head>
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark MainNavbar">
+      <div class="container-fluid">
+        <div class="col-md-1"><a href="/sideDrawer/SideDrawer.html">drawer</a></div>
+
+
+            <div class="col-md-10">
+              <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar">
+                <span class="navbar-toggler-icon"><i class="fas fa-bars iconbar"></i></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbar">
+                <a class="navbar-brand d-flex align-items-center" href="/">
+                  <img src="../images/Logo.png" alt="MisterySmurfs Logo" class="logo-img">
+                  <span class="ml-2 title-text">RSS Empire Shop</span>
+                </a>
+                <ul class="navbar-nav mx-auto">
+                  <li class="nav-item"><a class="nav-link <%= activeTab === 'Home' ? 'activeTab' : ''%>" href="/">Home</a></li>
+                  <li class="nav-item"><a class="nav-link <%= activeTab === '`' ? 'activeTab' : ''%>" href="/FAQ">FAQ</a></li>
+                  <li class="nav-item"><a class="nav-link"  href="https://discord.gg/pb7yEUFNDx" target="_blank">Discord</a></li>
+                  <li class="nav-item"><a class="nav-link <%= activeTab === 'Reviews' ? 'activeTab' : '' %>" href="/reviews">Reviews</a></li>
+                  <li class="nav-item"><a class="nav-link <%= activeTab === 'Reviews' ? 'activeTab' : '' %>" href="/">Other Services Soon..</a>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                  <% if (user) { %>
+                    <li class="nav-item">
+                      <a class="nav-link <%= activeTab === 'Cart' ? 'activeTab' : '' %>" href="/Cart">
+                        <i class="fas fa-shopping-cart"></i> Cart
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link <%= activeTab === 'myPurchases' ? 'activeTab' : '' %>" href="/myPurchases">
+                        <i class="fa-solid fa-bag-shopping"></i> My Purchases
+                      </a>
+                    </li>
+                  <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-user-circle"></i> <%= user.username %>
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="userDropdown">
+
+                        <% if (user && user.seller) { %>
+                          <a class="dropdown-item" href="/sellerMenu">Seller Menu</a>
+                        <% } %>
+
+                        <a class="dropdown-item" href="/logout">Logout</a>
+                      </div>
+                    <% } %>
+                  </li>
+                  <% if (!user) { %>
+                    <li class="nav-item"><a class="nav-link <%= activeTab === 'login' ? 'activeTab' : ''%>" href="/login">Login</a></li>
+                    <li class="nav-item"><a class="nav-link <%= activeTab === 'register' ? 'activeTab' : ''%>" href="/register">Register</a></li>
+                  <% } %>
+                </ul>
+              </div>
+            </div>
+          <div class="col-md-1"></div>
+      </div>
+    </nav>
+  </header>
+  <div class="content container-fluid my-4">
+    <div class="row">
+      <div class="col-md-1">
+
