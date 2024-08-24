@@ -1,0 +1,96 @@
+body {
+    background-color: aqua;
+}
+
+.max-width {
+    display: flex;
+    justify-content: center;
+}
+
+.box2 {
+    display: grid;
+    grid-template-columns: repeat(4, 200px);
+    grid-template-rows: repeat(auto-fit, 200px);
+    gap: 30px;
+}
+
+.box-div:hover {
+    scale: 1.1;
+    background-color: rgb(221, 236, 250);
+    box-shadow: 3px 3px 3px;
+}
+
+.box-div:active {
+    scale: 1;
+    background-color: rgb(221, 236, 250);
+}
+
+.box {
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.box-a {
+    text-decoration: none;
+    color: rgb(5, 8, 8)
+}
+
+.box-a:hover {
+    color: rgb(162, 158, 158);
+    /* text-decoration: underline */
+}
+
+.box-div {
+    width: 200px;
+    height: 200px;
+    background-color: rgb(255, 255, 255);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-content: space-around;
+    flex-flow: wrap;
+    border-radius: 15px;
+}
+
+.box-div2 {
+    width: 300;
+    height: 200px;
+    background-color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: space-around;
+    flex-flow: wrap;
+    border-radius: 15px;
+}
+
+.box-div2:hover {
+    background-color: rgb(1, 1, 1);
+}
+
+.body-div {
+    margin: 0px auto;
+    padding-left: 15px;
+    padding-bottom: 12px;
+    display: flex;
+    max-width: 1000px;
+    background-color: white;
+    flex-direction: column;
+    text-align: center;
+    align-self: center;
+    justify-items: center;
+    border-radius: 15px;
+}
+
+#content {
+    text-align: justify;
+    margin: 10px 20px;
+}
+
+* {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
