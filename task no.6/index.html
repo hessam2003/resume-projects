@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>cac</title>
+</head>
+
+<body id="doubleTheme">
+    <main class="main__flexbox">
+        <div class="calc " id="calculator">
+            <nav>
+                <side >
+                    calc
+                </side>
+                <main>
+                    <img class="main__icon--nightmode dayMode " id="nightModeIcon" src="photos/nightMode.svg" alt="">
+                    <img class="main__icon--setting " src="photos/setting.svg" alt="">
+                </main>
+            </nav>
+            <div class="calc__input">
+                <div class="calc__input__entry">
+                    <div class="entry--num" id="enterNum"></div>
+                    <div class="entry--process" id="enterProcess"></div>
+                </div>
+                <div class="calc__input__result" id="enterResult"></div>
+                <div  id="errorHandler"></div>
+            </div>
+            <div class="calc__btns__wrraper " id="KeyBoard">
+                <div class="key  " id="powerBtn">AC</div>
+                <div class="key " id="clearBtn">C</div>
+                <div class="key  process" id="percent">%</div>
+                <div class="key  process" id="divide">/</div>
+                <div class="key  num">7</div>
+                <div class="key  num">8</div>
+                <div class="key  num">9</div>
+                <div class="key  process" id="power">*</div>
+                <div class="key  num">4</div>
+                <div class="key  num">5</div>
+                <div class="key  num">6</div>
+                <div class="key  process" id="minus">-</div>
+                <div class="key  num">1</div>
+                <div class="key  num">2</div>
+                <div class="key  num">3</div>
+                <div class="key  process" id="plus">+</div>
+                <div class="key  num" id="zero">0</div>
+                <div class="key  num">.</div>
+                <div class="key " id="result">=</div>
+            </div>
+        </div>
+        <div class="checkbox__parent">
+            <div class="main__input__wrapper">
+
+                <label class="label--disabled" id="NeedInfoBtn">
+                    <input class="checkbox" id="checkBox" type="checkbox">
+                    <svg width="60px" height="30px">
+                        <circle cx="15" cy="15" r="13" class="innertext__circle--disabled" id="circle"></circle>
+                    </svg>
+                </label>
+                <p id="">need help?</p>
+            </div>
+        </div>
+        <div class="info__wrapper">
+            <div class="info first">
+                <h4>wellcome</h4>
+                <p>this is a calculator that you can use it to solve the variety of your math problems.I hope you engoy
+                    using it</p>
+            </div>
+            <div class="info second">
+                <h4>metodes</h4>
+                <p>you can use wide range of metodes and manufactures for solving your math problems.what are you
+                    waiting for !! start .
+                </p>
+            </div>
+            <div class="info third">
+                <h4>start</h4>
+                <p>there is a AC button in screen of calculator,make sure you hit that button before anything to power
+                    up calc first</p>
+            </div>
+            <div class="info fourth">
+                <h4> error handling</h4>
+                <p> if you miss spelled or used some unconventional buttons and values , an error message will pops up
+                    to inform you of your error
+                </p>
+
+            </div>
+            <p class="info__loadingPage" id="infoBox"></p>
+        </div>
+    </main>
+</body>
+<script src="script.js"></script>
+
+</html>
