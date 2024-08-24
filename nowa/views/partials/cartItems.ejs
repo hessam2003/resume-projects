@@ -1,0 +1,91 @@
+<div class="col-md-9">
+    <div class="row">
+        <% if (cartItems.length === 0) { %>
+            <div class="col-md-12">
+                <div class="alert alert-info">
+                    No items in the cart.
+                </div>
+            </div>
+        <% } else { %>
+            <% 
+            cartItems.forEach(cartItem => { %>
+                <div class="col-md-4 mb-3">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <% /* Assuming the cartItem object has properties like id, amount, and price */ %>
+                            <% if ([1, 2, 3, 4, 5, 6, 7, 8, 9].includes(cartItem.id)) { %>
+                                <img src="../images/Item<%= cartItem.id %>.webp" class="card-img-top" alt="Image for ID <%= cartItem.id %>">
+                            <% } %>
+                            <p class="card-text ">Kingdom: <%= cartItem.kingdom %></p>
+                            <p class="card-text">Amount: <%= cartItem.amount %>M</p>
+                            <a class="btn btn-danger delete-button100" data-item-id="<%= cartItem.id %>">Remove 100M</a>
+                            <a class="btn btn-success add-button100" data-item-id="<%= cartItem.id %>">Add 100M</a>
+                            <div class="card-footer d-flex justify-content-between align-items-end paddingFooter">
+                                <p class="card-text price-label-cart">Price: <%= cartItem.totalPrice %>€</p>
+                                <a class="btn btn-danger delete-button" data-item-id="<%= cartItem.id %>">Remove</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% }); %>
+        <% } %>
+    </div>
+</div>
+
+<div class="col-md-3">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Checkout</h5>
+            <hr>
+            <form action="Cart/submit-order" method="post">
+                <div class="mb-3">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <label for="totalPrice" class="form-label h4">Total Price:</label>
+                        <p id="totalPrice" class="total-price h3 mb-0"><%= totalPrice %>€</p>
+                    </div>
+                </div>
+                
+    <div class="mb-3 row">
+        <div class="col-md-12">
+            <input type="text" class="form-control" id="username" name="username" placeholder="Insert your in-game name">
+        </div>
+    </div>
+    
+    <div class="mb-3 row">
+        <div class="col-md-12">
+            <input type="text" class="form-control" id="discord" name="discord" placeholder="Insert your discord name">
+        </div>
+    </div>
+    
+    <div class="mb-3 row">
+        <div class="col-md-12">
+            <input type="text" class="form-control" id="coords" name="coords" placeholder="Insert your coordinates">
+        </div>
+    </div>
+    
+    <!-- Stripe Payment Button -->
+    <div class="mb-3 row">
+        <div class="col-md-12">
+            <button type="submit" class="btn btn-primary w-100 mt-2">
+                <i class="fab fa-cc-stripe"></i> Pay using Stripe
+            </button>
+        </div>
+    </div>
+   
+
+            <!-- Additional message for other payment methods -->
+            <div class="mt-4 text-center">
+                <p class="mb-1">Prefer crypto like binance?</p>
+                <p class="mb-0">
+                    Check our
+                    <a href="https://discord.com/invite/pb7yEUFNDx" target="_blank" class="text-decoration-none text-primary">
+                        Discord
+                    </a>
+                    for more options.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+

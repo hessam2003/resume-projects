@@ -1,0 +1,141 @@
+<%- include('partials/MasterHeader') %>
+<title>RSS Empire Shop - Buy Resources</title>
+</div>
+<link href="https://cdn.jsdelivr.net/npm/ion-rangeslider@2.3.1/css/ion.rangeSlider.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/ion-rangeslider@2.3.1/js/ion.rangeSlider.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<link rel="icon" href="/images/.png" type="image/x-icon">
+<div class="col-md-10">
+    <div class="row" id="accountsSection">
+        <div class="col-md-3">
+            <div class="card mb-4">
+        
+                <div class="card-body">
+                    <img src="../images/Item1.webp" class="card-img-top" alt="Buy food">
+                    <h5 class="card-title card-title-custom">100M Food</h5>
+        
+                    <div class="card-footer d-flex justify-content-between align-items-end paddingFooter">
+                        <p class="card-text price-label">Price: 5.5€</p>
+                        <a class="btn btn-success addToCartButton" data-item-id="6">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card mb-4">
+        
+                <div class="card-body">
+                    <img src="../images/Item2.webp" class="card-img-top" alt="Buy food">
+                    <h5 class="card-title card-title-custom">100M Wood</h5>
+        
+                    <div class="card-footer d-flex justify-content-between align-items-end paddingFooter">
+                        <p class="card-text price-label">Price: 5.5€</p>
+                        <a class="btn btn-success addToCartButton" data-item-id="7">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card mb-4">
+        
+                <div class="card-body">
+                    <img src="../images/Item3.webp" class="card-img-top" alt="Buy food">
+                    <h5 class="card-title card-title-custom">100M Stone</h5>
+        
+                    <div class="card-footer d-flex justify-content-between align-items-end paddingFooter">
+                        <p class="card-text price-label">Price: 7€</p>
+                        <a class="btn btn-success addToCartButton" data-item-id="8">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card mb-4">
+        
+                <div class="card-body">
+                    <img src="../images/Item4.png" class="card-img-top" alt="Buy food">
+                    <h5 class="card-title card-title-custom">100M Gold</h5>
+        
+                    <div class="card-footer d-flex justify-content-between align-items-end paddingFooter">
+                        <p class="card-text price-label">Price: 11€</p>
+                        <a class="btn btn-success addToCartButton" data-item-id="9">Add to Cart</a>
+                    </div>
+                </div>
+            </div>  
+        </div>
+    </div>
+</div>
+<script nonce="<%= nonce %>">
+
+
+    // Attach a click event handler to elements with the "addToCartButton" class using event delegationsd
+    $("#accountsSection").on("click", ".addToCartButton", function() {
+        // Inside this function, $(this) refers to the clicked "Add to Cart" button
+        var itemId = $(this).data("item-id");
+        var data = { itemId: itemId };
+
+        // Send an AJAX POST request to the server
+        $.ajax({
+            type: "POST",
+            url: "Cart/add-to-cart", // Replace with the actual server endpoint
+            data: data,
+            success: function(response) {
+                // Handle the success response (e.g., show a success message)
+                toastr.success("Product added to the cart", "Success", {
+                    timeOut: 3000, // How long the notification will be displayed (in milliseconds)
+                    progressBar: true, // Show a progress bar
+                    positionClass: "toast-top-center", // Position of the notification
+                    // Add more options as needed
+                });
+            },
+            statusCode: {
+                400: function() {
+                    toastr.warning("Cart is full. Maximum of 8 items allowed", "Warning", {
+                        timeOut: 3000,
+                        progressBar: true,
+                        positionClass: "toast-top-center",
+                        // Add more options as needed
+                        });
+                    },
+                401: function() {
+                    toastr.error("Please login before adding resources to the cart", "Error", {
+                        timeOut: 3000,
+                        progressBar: true,
+                        positionClass: "toast-top-center",
+                        // Add more options as needed
+                        });
+                    },
+                404: function() {
+                    toastr.error("Account not found", "Error", {
+                        timeOut: 3000,
+                        progressBar: true,
+                        positionClass: "toast-top-center",
+                        // Add more options as needed
+                        });
+                    },
+                409: function() {
+                    toastr.warning("Account already in the cart", "Warning", {
+                        timeOut: 3000,
+                        progressBar: true,
+                        positionClass: "toast-top-center",
+                        // Add more options as needed
+                        });
+                    },
+                439: function() {
+                    toastr.warning("Too many request, wait one second", "Warning", {
+                        timeOut: 3000,
+                        progressBar: true,
+                        positionClass: "toast-top-center",
+                        // Add more options as needed
+                        });
+                    },
+                },
+            error: function(error) {
+                // Handle errors (e.g., display an error message)
+                console.error("Error adding item to the cart: " + error);
+            }
+        });
+    });
+</script>
+<%- include('partials/MasterFooter') %>
